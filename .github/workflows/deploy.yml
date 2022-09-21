@@ -2,7 +2,7 @@ name: Deployment
 
 on:
   push:
-    branches: [production]
+    branches: [main]
 
 jobs:
   build:
@@ -54,5 +54,5 @@ jobs:
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY_SSH_PRIVATE }}
           publish_dir: ./build
-          publish_branch: master
+          publish_branch: gh-pages
           exclude_assets: "{./!(analysis)/**,./!(asset-manifest.json)}"
