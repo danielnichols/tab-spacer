@@ -47,6 +47,8 @@ jobs:
       # Build the site
       - name: Build page
         run: yarn build
+      - name: Copy CNAME to build dir
+        run: cp CNAME build/
 
       # Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
