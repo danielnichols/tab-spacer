@@ -85,7 +85,7 @@ html, body {
         opacity: 1;
       }
       
-      &::-webkit-slider-thumb {
+      &::-webkit-slider-thumb, &::-moz-range-thumb {
         appearance: none;
         width: 24px;
         height: 24px;
