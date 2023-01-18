@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
 
 import "./styles.scss";
 
@@ -19,17 +20,23 @@ function createTabTitle(
   return newTitle;
 }
 
+function setTitle(title: string) {
+  document.title = title;
+}
+
+const setTitleDebounced = _.debounce(setTitle, 1000);
+
 export default function App() {
   // Set up state for title segments
   const url = new URL(document.location.href);
   const [titleState, setTitleState] = useState(
-    ((url.searchParams.get("title") as unknown) as string) || ""
+    (url.searchParams.get("title") as unknown as string) || ""
   );
   const [prefixState, setPrefixState] = useState(
-    ((url.searchParams.get("prefix") as unknown) as string) || "///"
+    (url.searchParams.get("prefix") as unknown as string) || "///"
   );
   const [suffixState, setSuffixState] = useState(
-    ((url.searchParams.get("suffix") as unknown) as string) || "///"
+    (url.searchParams.get("suffix") as unknown as string) || "///"
   );
   const [targetLengthState, setTargetLengthState] = useState(
     url.searchParams.get("targetLength") || "30"
@@ -37,9 +44,9 @@ export default function App() {
 
   // Field width state
   const [columnState, setColumnState] = useState({
-    prefix: 5,
-    title: 5,
-    suffix: 5
+    prefix: prefixState?.length + 2 || 5,
+    title: titleState?.length + 2 || 5,
+    suffix: suffixState?.length + 2 || 5,
   });
 
   // Handle form value changes
@@ -47,7 +54,7 @@ export default function App() {
     setPrefixState(e.target.value);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.prefix = length <= 0 ? 5 : length;
+    columns.prefix = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
   function handleTitleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -55,19 +62,16 @@ export default function App() {
     // console.log(columnState, e.target.scrollWidth, e.target.cols);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.title = length <= 0 ? 5 : length;
+    columns.title = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
   function handleSuffixChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setSuffixState(e.target.value);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.suffix = length <= 0 ? 5 : length;
+    columns.suffix = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
-  // function handleTargetLengthChange(e: number) {
-  //   setTargetLengthState(e.toString());
-  // }
   function handleTargetLengthChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTargetLengthState(e.target.value);
   }
@@ -80,7 +84,7 @@ export default function App() {
       suffixState,
       Number.parseInt(targetLengthState)
     );
-    document.title = newTitle;
+    setTitleDebounced(newTitle);
 
     // Update URL with new data
     url.searchParams.set("title", titleState);
@@ -107,11 +111,6 @@ export default function App() {
           rows={1}
           cols={columnState.title}
         />
-        {/* <div className="titleTextWrapper">
-          <p>[</p>
-          <p>=</p>
-          <p>]</p>
-        </div> */}
         <textarea
           value={suffixState}
           placeholder="Suffix"
