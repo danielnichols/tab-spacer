@@ -44,9 +44,9 @@ export default function App() {
 
   // Field width state
   const [columnState, setColumnState] = useState({
-    prefix: prefixState?.length || 5,
-    title: titleState?.length || 5,
-    suffix: suffixState?.length || 5,
+    prefix: prefixState?.length + 2 || 5,
+    title: titleState?.length + 2 || 5,
+    suffix: suffixState?.length + 2 || 5,
   });
 
   // Handle form value changes
@@ -54,7 +54,7 @@ export default function App() {
     setPrefixState(e.target.value);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.prefix = length <= 0 ? 5 : length;
+    columns.prefix = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
   function handleTitleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -62,14 +62,14 @@ export default function App() {
     // console.log(columnState, e.target.scrollWidth, e.target.cols);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.title = length <= 0 ? 5 : length;
+    columns.title = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
   function handleSuffixChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
     setSuffixState(e.target.value);
     const columns = columnState;
     const length = e.target.value.length;
-    columns.suffix = length <= 0 ? 5 : length;
+    columns.suffix = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
   // function handleTargetLengthChange(e: number) {
