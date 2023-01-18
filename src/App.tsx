@@ -30,13 +30,13 @@ export default function App() {
   // Set up state for title segments
   const url = new URL(document.location.href);
   const [titleState, setTitleState] = useState(
-    ((url.searchParams.get("title") as unknown) as string) || ""
+    (url.searchParams.get("title") as unknown as string) || ""
   );
   const [prefixState, setPrefixState] = useState(
-    ((url.searchParams.get("prefix") as unknown) as string) || "///"
+    (url.searchParams.get("prefix") as unknown as string) || "///"
   );
   const [suffixState, setSuffixState] = useState(
-    ((url.searchParams.get("suffix") as unknown) as string) || "///"
+    (url.searchParams.get("suffix") as unknown as string) || "///"
   );
   const [targetLengthState, setTargetLengthState] = useState(
     url.searchParams.get("targetLength") || "30"
@@ -44,9 +44,9 @@ export default function App() {
 
   // Field width state
   const [columnState, setColumnState] = useState({
-    prefix: 5,
-    title: 5,
-    suffix: 5
+    prefix: prefixState?.length || 5,
+    title: titleState?.length || 5,
+    suffix: suffixState?.length || 5,
   });
 
   // Handle form value changes
