@@ -24,7 +24,7 @@ function setTitle(title: string) {
   document.title = title;
 }
 
-const setTitleThrottled = _.throttle(setTitle, 1000);
+const setTitleDebounced = _.debounce(setTitle, 1000);
 
 export default function App() {
   // Set up state for title segments
@@ -87,7 +87,7 @@ export default function App() {
       suffixState,
       Number.parseInt(targetLengthState)
     );
-    setTitleThrottled(newTitle);
+    setTitleDebounced(newTitle);
 
     // Update URL with new data
     url.searchParams.set("title", titleState);
