@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import _ from "lodash";
 
 import "./styles.scss";
 
@@ -18,6 +19,12 @@ function createTabTitle(
   const newTitle = `${prefix}${pad}${title}${pad}${suffix}`;
   return newTitle;
 }
+
+function setTitle(title: string) {
+  document.title = title;
+}
+
+const setTitleThrottled = _.throttle(setTitle, 1000);
 
 export default function App() {
   // Set up state for title segments
@@ -80,7 +87,7 @@ export default function App() {
       suffixState,
       Number.parseInt(targetLengthState)
     );
-    document.title = newTitle;
+    setTitleThrottled(newTitle);
 
     // Update URL with new data
     url.searchParams.set("title", titleState);
