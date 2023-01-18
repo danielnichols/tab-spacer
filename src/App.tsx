@@ -72,9 +72,6 @@ export default function App() {
     columns.suffix = length <= 0 ? 5 : length + 2;
     setColumnState(columns);
   }
-  // function handleTargetLengthChange(e: number) {
-  //   setTargetLengthState(e.toString());
-  // }
   function handleTargetLengthChange(e: React.ChangeEvent<HTMLInputElement>) {
     setTargetLengthState(e.target.value);
   }
@@ -114,11 +111,6 @@ export default function App() {
           rows={1}
           cols={columnState.title}
         />
-        {/* <div className="titleTextWrapper">
-          <p>[</p>
-          <p>=</p>
-          <p>]</p>
-        </div> */}
         <textarea
           value={suffixState}
           placeholder="Suffix"

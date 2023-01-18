@@ -24,14 +24,12 @@ html, body {
 }
 
 @mixin glow {
-  // text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.35), 0 0 0.45em currentColor;
   text-shadow: 0 0 0.125em rgba(255, 110, 205, 0.85), 0 0 0.35em currentColor;
 }
 
 @mixin text-box {
   text-align: center;
   border: 0px;
-  // padding: 20px;
   line-height: 2em;
   background: transparent;
   color:var(--color-neon);
@@ -70,7 +68,7 @@ html, body {
   padding-right: 20px;
   border-radius: 20px 20px 0px 0px;
   box-shadow: inset 16px 16px 32px #{color.adjust($color-bg, $lightness: -1.6%)},
-            inset -16px -16px 32px #{color.adjust($color-bg, $lightness: 1.5%)};
+              inset -16px -16px 32px #{color.adjust($color-bg, $lightness: 1.5%)};
 
   input {
     &[type="range"]{
@@ -80,12 +78,11 @@ html, body {
       border-radius: 100px;
       opacity: 0.7;
       transition: opacity .2s;
-      // transition: 1s all ease-out;
-      
+
       &:hover {
         opacity: 1;
       }
-      
+
       &::-webkit-slider-thumb, &::-moz-range-thumb {
         appearance: none;
         width: 24px;
@@ -93,16 +90,12 @@ html, body {
         border-radius: 100px;
         background: var(--color-neon);
         cursor: pointer;
-        // transition: 1s all ease-out;
-        // right: 100%;
-        // transform: translateX(12px);
         position:relative;
       }
     }
     &[type="number"]{
       @include text-box;
       width: 2.2em;
-      
     }
   }
 }
