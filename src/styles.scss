@@ -1,6 +1,5 @@
 @use "sass:color";
 
-
 $color-bg: #31202a;
 $color-neon: #ff14bc;
 
@@ -9,7 +8,8 @@ $color-neon: #ff14bc;
   --color-neon: #{$color-neon};
 }
 
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -32,7 +32,7 @@ html, body {
   border: 0px;
   line-height: 2em;
   background: transparent;
-  color:var(--color-neon);
+  color: var(--color-neon);
   font-size: 48px;
   font-family: neon2mono;
   @include glow;
@@ -71,29 +71,30 @@ html, body {
               inset -16px -16px 32px #{color.adjust($color-bg, $lightness: 1.5%)};
 
   input {
-    &[type="range"]{
+    &[type="range"] {
       flex-grow: 1;
       appearance: none;
       height: 8px;
       border-radius: 100px;
       opacity: 0.7;
-      transition: opacity .2s;
+      transition: opacity 0.2s;
 
       &:hover {
         opacity: 1;
       }
 
-      &::-webkit-slider-thumb, &::-moz-range-thumb {
+      &::-webkit-slider-thumb,
+      &::-moz-range-thumb {
         appearance: none;
         width: 24px;
         height: 24px;
         border-radius: 100px;
         background: var(--color-neon);
         cursor: pointer;
-        position:relative;
+        position: relative;
       }
     }
-    &[type="number"]{
+    &[type="number"] {
       @include text-box;
       width: 2.2em;
     }
