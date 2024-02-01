@@ -6,3 +6,7 @@
   font-family: neon2;
   src: url("./fonts/neon2.otf");
 }
+@font-face {
+  font-family: neon2mono;
+  src: url("./fonts/neon2mono.otf");
+}
