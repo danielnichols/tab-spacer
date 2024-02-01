@@ -45,7 +45,7 @@ export default function App() {
   // Field width state
   const [columnState, setColumnState] = useState({
     prefix: prefixState?.length + 2 || 5,
-    title: titleState?.length + 2 || 5,
+    title: (titleState?.length <= 0 ? 3 : titleState.length) + 2 || 5,
     suffix: suffixState?.length + 2 || 5,
   });
 

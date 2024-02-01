@@ -45,10 +45,13 @@ body {
   justify-content: center;
   flex-grow: 1;
   flex-wrap: nowrap;
-  textarea, p {
+  overflow: hidden;
+  padding: 4px;
+  textarea,
+  p {
     @include text-box;
     resize: none;
-    overflow: visible;
+    overflow: scroll;
 
     &::placeholder {
       opacity: 50%;
@@ -68,7 +71,7 @@ body {
   padding-right: 20px;
   border-radius: 20px 20px 0px 0px;
   box-shadow: inset 16px 16px 32px #{color.adjust($color-bg, $lightness: -1.6%)},
-              inset -16px -16px 32px #{color.adjust($color-bg, $lightness: 1.5%)};
+    inset -16px -16px 32px #{color.adjust($color-bg, $lightness: 1.5%)};
 
   input {
     &[type="range"] {
